@@ -1,7 +1,7 @@
 module.exports = {
     tables: [
       {
-        TableName: `userStreams`,
+        TableName: `userStreamsTestTable`,
         KeySchema: [{ AttributeName: "streamId", KeyType: "HASH" }],
         AttributeDefinitions: [{ AttributeName: "streamId", AttributeType: "S" }],
         ProvisionedThroughput: { ReadCapacityUnits: 1, WriteCapacityUnits: 1 },
