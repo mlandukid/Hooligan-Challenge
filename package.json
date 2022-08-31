@@ -2,9 +2,15 @@
   "name": "hooligan-challenge",
   "version": "1.0.0",
   "description": "Build a service in Node.js that exposes an API which will be consumed from any client.",
-  "main": "index.js",
+  "main": "logStream.js",
+  "dependencies": {
+    "aws-sdk": "^2.1206.0",
+    "jest": "^26.2.2",
+    "uuid": "^8.3.0",
+    "aws-serverless-express": "^3.4.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -15,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/mlandukid/Hooligan-Challenge/issues"
   },
-  "homepage": "https://github.com/mlandukid/Hooligan-Challenge#readme"
+  "homepage": "https://github.com/mlandukid/Hooligan-Challenge#readme",
+  "devDependencies": {
+    "supertest": "^4.0.2"
+  }
 }
