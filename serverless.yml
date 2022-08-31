@@ -3,6 +3,15 @@ service: hooligan
 custom:
   settings:
     USER_STREAMS_TABLE: userStreams
+  dynamodb:
+    stages:
+      - dev
+    start:
+      port: 8001
+      inMemory: true
+      migrate: true
+    migration:
+      dir: offline/migrations
 
 provider:
   name: aws
@@ -17,6 +26,10 @@ provider:
         - dynamodb:Scan
       Resource:
         - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.settings.USER_STREAMS_TABLE}"
+
+plugins:
+  - serverless-offline
+  - serverless-dynamodb-local
 
 functions:
   logStream:

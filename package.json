@@ -5,9 +5,9 @@
   "main": "logStream.js",
   "dependencies": {
     "aws-sdk": "^2.1206.0",
+    "aws-serverless-express": "^3.4.0",
     "jest": "^26.2.2",
-    "uuid": "^8.3.0",
-    "aws-serverless-express": "^3.4.0"
+    "uuid": "^8.3.0"
   },
   "scripts": {
     "test": "jest"
@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/mlandukid/Hooligan-Challenge#readme",
   "devDependencies": {
+    "serverless-dynamodb-local": "^0.2.40",
     "supertest": "^4.0.2"
   }
 }
