@@ -6,7 +6,7 @@ let options = {};
 if (process.env.IS_OFFLINE) {
   options = {
     region: "localhost",
-    endpoint: "http://localhost:8001",
+    endpoint: "http://localhost:8080",
   };
 }
 
