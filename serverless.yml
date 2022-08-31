@@ -1,0 +1,44 @@
+service: hooligan
+
+custom:
+  settings:
+    USER_STREAMS_TABLE: user_streams
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  environment: ${self:custom.settings}
+  region: us-east-1
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+      Resource:
+        - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.settings.USER_STREAMS_TABLE}"
+
+functions:
+  logStream:
+    handler: handler.logStream
+    events:
+      - http:
+          path: /stream
+          method: post
+
+resources:
+  Resources:
+    UserStreamsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: "userId"
+            AttributeType: "S"
+        KeySchema:
+          - AttributeName: "userId"
+            KeyType: "HASH"
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TableName: ${self:custom.settings.USER_STREAMS_TABLE}
+
+

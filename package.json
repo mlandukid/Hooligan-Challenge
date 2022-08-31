@@ -1,0 +1,19 @@
+{
+  "name": "hooligan-challenge",
+  "version": "1.0.0",
+  "description": "Build a service in Node.js that exposes an API which will be consumed from any client.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mlandukid/Hooligan-Challenge.git"
+  },
+  "author": "Loyiso Mlandu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mlandukid/Hooligan-Challenge/issues"
+  },
+  "homepage": "https://github.com/mlandukid/Hooligan-Challenge#readme"
+}
