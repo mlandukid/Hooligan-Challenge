@@ -6,11 +6,7 @@
   "dependencies": {
     "aws-sdk": "^2.1206.0",
     "aws-serverless-express": "^3.4.0",
-    "jest": "^26.2.2",
     "uuid": "^8.3.0"
-  },
-  "scripts": {
-    "test": "jest"
   },
   "repository": {
     "type": "git",
