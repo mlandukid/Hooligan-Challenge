@@ -45,9 +45,9 @@ module.exports.removeStream = (event, context, callback) => {
     .delete(params)
     .promise()
     .then(() => {
-       callback(null, response(204, `User stopped viewing stream`));
+       callback(null, response(204));
     })
     .catch((error) => {
-        callback(null, response(404, error.message));
+      callback(null, response(404, { error: error.message }));
     });
 };
