@@ -75,4 +75,6 @@ I feel my commits could have been more frequent. However I took a plunge into AW
 
 ### Testing
 
-Throughout the challenge I implemented testing through the use of Postman and CloudWatch where applicable. However I really wanted to implement testing via test suites such as Jest which I am familiar with. I am positive this is possible, however I'm not familiar with using serverless testing with test suites - I will be putting in some time to learn this as I feel test suites give a more resolute response to functionality. I tried multiple methods to implement this, however I didn't manage to find a solution, YET.
+Throughout the challenge I implemented testing through the use of Postman, TDD and CloudWatch where applicable. In addition to this I used jest while mocking a dynamodb table to ensure that the data that was being inserted/removed was in the correct format and the responses received were valid. Using Postman was incredibly useful as I could ensure the endpoints were functioning and could provide a detailed rundown of the status codes and response bodies. I am happy I chose to broaden my horizons and try implement AWS and serverless for the experience alone - I feel this experience will serve me greatly in the future.
+
+The 3 test files included in the test folder are my experiments with testing and dynamo.test.js threw up the best results as it enabled to ensure the data was getting sent and received in the correct format, ensuring that the components of the functions were working correctly.
