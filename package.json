@@ -6,8 +6,9 @@
   "dependencies": {
     "aws-sdk": "^2.1206.0",
     "aws-serverless-express": "^3.4.0",
-    "uuid": "^8.3.0",
-    "serverless-dynamodb-local": "^0.2.39"
+    "axios": "^0.19.2",
+    "serverless-dynamodb-local": "^0.2.39",
+    "uuid": "^8.3.0"
   },
   "scripts": {
     "test": "jest"

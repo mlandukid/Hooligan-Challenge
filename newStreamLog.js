@@ -1,5 +1,6 @@
 "use strict";
 const AWS = require("aws-sdk");
+const { v4: uuidv4 } = require("uuid");
 
 let options = {};
 
@@ -13,7 +14,6 @@ if (process.env.IS_OFFLINE) {
 const db = new AWS.DynamoDB.DocumentClient(options);
 
 
-const { v4: uuidv4 } = require("uuid");
 
 const userStreams = process.env.USER_STREAMS_TABLE;
 
