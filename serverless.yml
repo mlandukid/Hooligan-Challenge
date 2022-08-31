@@ -22,7 +22,6 @@ provider:
     - Effect: "Allow"
       Action:
         - dynamodb:PutItem
-        - dynamodb:UpdateItem
         - dynamodb:Scan
       Resource:
         - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.settings.USER_STREAMS_TABLE}"
@@ -33,11 +32,17 @@ plugins:
 
 functions:
   logStream:
-    handler: handler.logStream
+    handler: newStreamLog.logStream
     events:
       - http:
           path: /stream
           method: post
+  removeStream:
+    handler: removeStreamLog.removeStream
+    events:
+      - http:
+          path: /stream
+          method: delete
 
 resources:
   Resources:
