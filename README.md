@@ -1,11 +1,5 @@
 # Hooligan-Backend-Assessment
 
-Build a service in Node.js that exposes an API which can be consumed from any client. This service must check how many video streams a given user is watching and prevent a user watching more than 3 video streams concurrently.
-
-### URL
-
-The api can be accessed at https://h173bq3s8k.execute-api.us-east-1.amazonaws.com/dev/stream.
-
 ### Planning
 
 My approach to this problem was one of simplicity but with scalability in mind. I knew I could have developed a backend server and crafted out the functionality to enable the consumer to check how many streams the user is watching and prohibit them to watch more than 3 at a time. However I felt that I needed to implement AWS to take advantage of the scalability of Lambda, API Gateway and DynamoDB.
@@ -14,6 +8,9 @@ My approach to this problem was one of simplicity but with scalability in mind. 
 My knowledge of AWS has grown recently however my knowledge of configuring AWS Services via code is still somewhat limited so I wanted to test myself to try and learn a different approach.
 
 I envisioned using two methods, POST and DELETE to manage stream logs once they're active - to POST, and once they're no longer inactive - to DELETE. This way there's no data in DynamoDB which doesn't need to be there. By using filter expressions I am able to determine how many current streams the user is viewing and limit them to only 3 at one time. Once they close the stream, an API call can be made to remove this log from the database, thus allowing them to open another stream if they wish.
+
+After completing the challenge I reviewed my solution and found that the problem could be solved in a more efficient and elegant way (detailed at the bottom of this README).
+
 
 ### Building
 - clone the repository into your chosen location.
@@ -30,7 +27,7 @@ I envisioned using two methods, POST and DELETE to manage stream logs once they'
 
 To log a stream in offline mode, send a POST request to https://h173bq3s8k.execute-api.us-east-1.amazonaws.com/dev/stream, an example request body is as follows:
 
-```bash
+```js
 {
     "userId": "123456789"
 }
@@ -42,7 +39,7 @@ In a real world scenario, the streamId could be sent with the userId, however in
 
 To remove a stream log in offline mode, send a DELETE request to https://h173bq3s8k.execute-api.us-east-1.amazonaws.com/dev/stream, an example request body is as follows:
 
-```bash
+```js
 {
     "userId": "123456789",
     "streamId": "{validStreamId}"
@@ -85,3 +82,37 @@ The 3 test files included in the test folder are my experiments with testing and
 - Commits
 
 I feel my commits could have been more frequent. However I took a plunge into AWS and wasn't entirely sure where ideal milestones could be identified so there were times where I had the whole function written before committing. In the future I am more wise to where commit points could be and how I could more efficiently manage my code.
+
+### Another solution
+
+After reflecting on the current solution I found potentially a more elegant way to solve the problem.
+
+By creating an API which uses only 1 route, the consumer can send a request in the following two forms:
+
+```js
+{userId: 12345, streamCountChange: 1}
+// or
+{userId: 12345, streamCountChange: -1}
+```
+
+These requests could be handled by a single function which would behave the following way:
+
+```js
+// scan for user in database
+if (userInDatabase && streamCountChange === 1 && currentStreams < 3) {
+  /*update userId's currentStreams + 1 in database*/
+} else if (!userInDatabase && streamCountChange === 3) {
+  /*throw error "too many concurrent streams"*/
+} else if (userInDatabase && streamCountChange === -1 && currentStreams === 1) {
+  /*delete row in database*/
+} else if (userInDatabase && streamCountChange === -1 && currentStreams > 1) {
+  /*update userId's currentStreams - 1 in database*/
+}
+// throw errors
+```
+
+Not only would this reduce the amount of items being held in the database leading to a reduction in costs. It would be more manageable and make the API requests easier to make, only having to send the userId and the increment needed.
+
+## DockerFile
+
+After completing this assignment i noticed i missed a step in adding a Dockerfile. Time constraints on my end could not allow me to add this mandatory action. I apologise for this inconvenice and hope this does not impact my chances but if it does i fully understand.
