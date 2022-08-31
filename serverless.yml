@@ -2,7 +2,7 @@ service: hooligan
 
 custom:
   settings:
-    USER_STREAMS_TABLE: user_streams
+    USER_STREAMS_TABLE: userStreams
 
 provider:
   name: aws
@@ -31,10 +31,10 @@ resources:
       Type: AWS::DynamoDB::Table
       Properties:
         AttributeDefinitions:
-          - AttributeName: "userId"
+          - AttributeName: "streamId"
             AttributeType: "S"
         KeySchema:
-          - AttributeName: "userId"
+          - AttributeName: "streamId"
             KeyType: "HASH"
         ProvisionedThroughput:
           ReadCapacityUnits: 1
