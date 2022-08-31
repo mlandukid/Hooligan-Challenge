@@ -8,7 +8,8 @@ The api can be accessed at https://h173bq3s8k.execute-api.us-east-1.amazonaws.co
 
 ### Planning
 
-My approach to this problem was one of simplicity but with scalability in mind. I knew I could have developed a backend server with Axios and crafted out the functionality to enable the consumer to check how many streams the user is watching and prohibit them to watch more than 3 at a time. However I felt that I needed to implement AWS to take advantage of the scalability of Lambda, API Gateway and DynamoDB.
+My approach to this problem was one of simplicity but with scalability in mind. I knew I could have developed a backend server and crafted out the functionality to enable the consumer to check how many streams the user is watching and prohibit them to watch more than 3 at a time. However I felt that I needed to implement AWS to take advantage of the scalability of Lambda, API Gateway and DynamoDB.
+
 
 My knowledge of AWS has grown recently however my knowledge of configuring AWS Services via code is still somewhat limited so I wanted to test myself to try and learn a different approach.
 
