@@ -29,7 +29,7 @@ To log a stream in offline mode, send a POST request to https://h173bq3s8k.execu
 
 ```js
 {
-    "userId": "123456789"
+    "userId": "12345678910"
 }
 ```
 
@@ -41,7 +41,7 @@ To remove a stream log in offline mode, send a DELETE request to https://h173bq3
 
 ```js
 {
-    "userId": "123456789",
+    "userId": "12345678910",
     "streamId": "{validStreamId}"
 }
 ```
@@ -81,7 +81,7 @@ The 3 test files included in the test folder are my experiments with testing and
 
 - Commits
 
-I feel my commits could have been more frequent. However I took a plunge into AWS and wasn't entirely sure where ideal milestones could be identified so there were times where I had the whole function written before committing. In the future I am more wise to where commit points could be and how I could more efficiently manage my code.
+I feel my commits could have been more frequent. However I took a plunge into AWS Lambda and wasn't entirely sure where ideal milestones could be identified so there were times where I had the whole function written before committing. In the future I am more wise to where commit points could be and how I could more efficiently manage my code.
 
 ### Another solution
 
