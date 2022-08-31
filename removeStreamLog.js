@@ -42,14 +42,12 @@ module.exports.removeStream = (event, context, callback) => {
   };
 
   return db
-    .delete(params, (error, data) => {
-      console.log(data);
-    })
+    .delete(params)
     .promise()
     .then(() => {
        callback(null, response(204, `User stopped viewing stream`));
     })
     .catch((error) => {
-      console.log(error);
+        callback(null, response(404, error.message));
     });
 };

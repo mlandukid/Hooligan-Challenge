@@ -58,7 +58,7 @@ module.exports.logStream = (event, context, callback) => {
           callback(null, response(201, stream));
         })
         .catch((error) => {
-          response(null, response(error.statusCode, error));
+          callback(null, response(error.statusCode, error));
         });
     } else {
       callback(
