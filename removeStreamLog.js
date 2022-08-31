@@ -29,15 +29,15 @@ module.exports.removeStream = (event, context, callback) => {
 
   const params = {
     TableName: userStreams,
-    ProjectionExpression: "#uid, #sid",
-    FilterExpression: "#uid = :uid and #sid = :sid",
+    Key: {
+        streamId: requestBody.streamId,
+      },
+      ConditionExpression: "#uid = :uid",
     ExpressionAttributeNames: {
       "#uid": "userId",
-      "#sid": "streamId",
     },
     ExpressionAttributeValues: {
       ":uid": requestBody.userId,
-      ":sid": requestBody.streamId,
     },
   };
 
@@ -47,13 +47,7 @@ module.exports.removeStream = (event, context, callback) => {
     })
     .promise()
     .then(() => {
-      callback(
-        null,
-        response(
-          204,
-          `${data.Item.userId} stopped viewing stream ${data.Item.userId}`
-        )
-      );
+       callback(null, response(204, `User stopped viewing stream`));
     })
     .catch((error) => {
       console.log(error);
